@@ -1,4 +1,4 @@
-import {baseApi} from "../../../shared/api/baseApi.ts";
+import {baseApi} from "../../../shared/api/base-api.ts";
 
 type UserCredentials={username:string,password:string}
 
