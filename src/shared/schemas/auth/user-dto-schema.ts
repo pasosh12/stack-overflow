@@ -1,5 +1,6 @@
 import {z} from 'zod';
-import {UserRoles} from "../../enums/user-roles.ts";
+import {UserRoles} from "@/shared/enums/user-roles";
+
 export const UserDtoSchema = z.object({
     id:z.string(),
     username:z.string().min(3),
