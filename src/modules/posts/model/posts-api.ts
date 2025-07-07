@@ -1,16 +1,31 @@
 import {baseApi} from "@/shared/api/base-api";
-import {ApiResponse} from "@/shared/schemas/post/post-type";
+import {ApiResponse, CodeFragment} from "@/modules/posts/model/post-type";
 
+export type SnippetQueryParams = {
+    userId?: number
+    page?: number
+    limit?: number
+    sortBy?: string[] //['id:DESC', 'language:ASC']
+    search?: string
+    searchBy?: string[] // ["code", "language"]
+}
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        publicSnippet: build.query<ApiResponse, void>({
-            query: (body) => ({
+        publicSnippet: build.query<ApiResponse, SnippetQueryParams>({
+            query: (params) => ({
                 url: '/api/snippets',
                 method: 'GET',
-                body,
+                params,
             }),
         }),
+        getSnippetById: build.query<CodeFragment, number>({
+            query: (id) => ({
+                url: `/api/snippets/${id}`,
+                method: 'GET',
+            }),
+        }),
+
         // register: build.mutation<User, UserCredentials>({
         //     query: (body) => ({
         //         url: '/api/register',
@@ -26,5 +41,5 @@ export const authApi = baseApi.injectEndpoints({
         // })
     }),
 });
-export const {usePublicSnippetQuery} = authApi;
+export const {usePublicSnippetQuery, useGetSnippetByIdQuery} = authApi;
 

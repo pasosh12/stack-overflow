@@ -1,11 +1,24 @@
 import React from 'react';
 import styles from './Header.module.css'
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useAppSelector} from "@/shared/hooks/use-app-selector";
-import {selectIsAuthenticated} from "@/app/app-slice";
+import {selectIsAuthenticated, setLogout} from "@/app/app-slice";
+import {useLogoutMutation} from "@/modules/auth";
+import {useAppDispatch} from "@/shared/hooks/use-app-dispatch";
+import {baseApi} from "@/shared/api/base-api";
 
 export const Header = () => {
-    const isAuth =useAppSelector(selectIsAuthenticated)
+    const isAuth = useAppSelector(selectIsAuthenticated)
+    const [logout] = useLogoutMutation()
+    const dispatch = useAppDispatch()
+    const handleLogout = () => {
+        logout().then(() => {
+                dispatch(setLogout())
+            }
+        ).then(() => {
+            dispatch(baseApi.util.invalidateTags(["Auth"]))
+        })
+    }
     return (
         <header className={styles.header}>
             <Link to="/" className={styles.logo}></Link>
@@ -17,8 +30,7 @@ export const Header = () => {
             </nav>
 
             <div className={styles.actions}>
-                {isAuth ? <button>Log out</button> : null}
-
+                {isAuth ? <button onClick={handleLogout}>Log out</button> : null}
             </div>
         </header>
     );

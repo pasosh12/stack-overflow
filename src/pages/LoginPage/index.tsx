@@ -1,14 +1,20 @@
 import React from 'react';
-import {useAppSelector} from "@/shared/hooks/use-app-selector";
-import {selectIsAuthenticated} from "@/app/app-slice";
+
 import {LoginForm} from "@/modules/auth/ui/LoginForm";
+import {Link} from 'react-router-dom';
 
 export const LoginPage = () => {
-    const isAuthenticated = useAppSelector(selectIsAuthenticated)
+
+
     return (
         <div className={'container'}>
-            <h1>Log in</h1>
+            <h2>Log in</h2>
             <LoginForm/>
+            <h3>Have no account yet? Follow
+            <Link to='/register'> sign up </Link>
+                link
+            </h3>
+
         </div>
     );
 };

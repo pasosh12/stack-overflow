@@ -8,7 +8,7 @@ const passwordSchema = z
     .regex(/[^A-Za-z0-9]/, { message: "Password must contain at least one symbol" });
 
 export const CredentialsDto = z.object({
-    username:z.string().min(5, {message:"Password must be at least 5 characters long"}),
+    username:z.string().min(5, {message:"Username must be at least 5 characters long"}),
     password:passwordSchema
 })
 

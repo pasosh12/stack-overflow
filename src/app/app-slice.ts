@@ -8,7 +8,6 @@ type AuthState = {
 
 const initialState: AuthState = {
     user: null,
-
     isAuthenticated: false
 }
 
@@ -20,27 +19,19 @@ export const appSlice = createSlice({
         selectUser: (state) => state.user
     },
     reducers:
-    // {
-    //     setUser(state, action: PayloadAction<User>) {
-    //         state.user = action.payload
-    //         state.isAuthenticated = true
-    //     },
-    //     logout(state) {
-    //         state.user = null
-    //         state.isAuthenticated = false
-    //     }
-    // }
         (create) => ({
-            setUser: create.reducer<{ user: User}>((state, action) => {
+            setUser: create.reducer<{ user: User }>((state, action) => {
                 state.user = action.payload.user
-                state.isAuthenticated = true
             }),
-            logout: create.reducer<void>((state) => {
+            setLogout: create.reducer<void>((state) => {
                 state.user = null
                 state.isAuthenticated = false
+            }),
+            setIsLoggedIn: create.reducer<{isLoggedIn:boolean}>((state, action) => {
+                state.isAuthenticated = action.payload.isLoggedIn
             })
         })
 })
 export const  appReducer = appSlice.reducer
-export const {setUser, logout} = appSlice.actions
+export const {setUser, setLogout, setIsLoggedIn} = appSlice.actions
 export const {selectIsAuthenticated, selectUser} = appSlice.selectors

@@ -1,10 +1,10 @@
 import {baseApi} from "@/shared/api/base-api";
-import type {UserCredentials, User} from "./auth-types.ts";
+import type {User, UserCredentials, UserResponse} from "./auth-types.ts";
 
 
 export const authApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        login: build.mutation<{data:User, message:string}, UserCredentials>({
+        login: build.mutation<{ data: User , message: string }, UserCredentials>({
             query: (body) => ({
                 url: '/api/auth/login',
                 method: 'POST',
@@ -18,12 +18,18 @@ export const authApi = baseApi.injectEndpoints({
                 body,
             }),
         }),
-        me: build.query<{data:User}, void>({
-    query:()=>({
-        url:'/api/auth',
-        method:'GET'
-    })
-})
+        me: build.query<UserResponse, void>({
+            query: () => ({
+                url: '/api/auth',
+                method: 'GET'
+            }),
+        }),
+        logout: build.mutation<void, void>({
+            query: () => ({
+                url: '/api/auth/logout',
+                method: 'POST'
+            }),
+        }),
     }),
 });
-export const { useLoginMutation, useRegisterMutation, useMeQuery } = authApi;
+export const {useLoginMutation, useRegisterMutation, useMeQuery, useLogoutMutation} = authApi;
