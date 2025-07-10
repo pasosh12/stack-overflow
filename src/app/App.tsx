@@ -1,24 +1,32 @@
 import './App.css'
-import {Header} from "@/ui/Header/Header";
+import {Header} from "@/shared/ui/Header/Header";
 import {Routing} from "@/shared/routing";
 import {useEffect, useState} from "react";
 import {useAppDispatch} from "@/shared/hooks/use-app-dispatch";
-import {useMeQuery, UserResponse} from "@/modules/auth";
+import {useAuthQuery, UserResponse} from "@/modules/auth";
 import {setIsLoggedIn, setUser} from "@/app/app-slice";
 import {CircularProgress} from "@mui/material";
+import {Sidebar} from "@/shared/ui/Sidebar";
+import {useNavigate} from "react-router-dom";
+import {ErrorSnackbar} from "@/shared/ui/ErrorSnackbar";
 
 function App() {
     const [isInitialized, setIsInitialized] = useState(false)
-    const {refetch, isLoading} = useMeQuery()
+    const {refetch, isLoading} = useAuthQuery()
     const dispatch = useAppDispatch()
 
+    const navigate = useNavigate()
     useEffect(() => {
         refetch().then(res => {
             if (res.data) {
+                console.log('resdata')
                 const user: UserResponse = res.data
                 dispatch(setUser({user: user.data}))
                 dispatch(setIsLoggedIn({isLoggedIn: true}))
             }
+            // else {
+            //     navigate('/login')
+            // }
         })
         setIsInitialized(true)
     }, [])
@@ -31,10 +39,16 @@ function App() {
         );
     }
     return (
-        <>
-            <Header/>
-            <Routing/>
-        </>
+        <div className='layout'>
+            <Sidebar/>
+            <div className='layout-content'>
+                <Header/>
+                <main>
+                    <Routing/>
+                </main>
+                <ErrorSnackbar/>
+            </div>
+        </div>
     )
 }
 
