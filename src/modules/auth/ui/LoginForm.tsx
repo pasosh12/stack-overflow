@@ -1,4 +1,4 @@
-import {useLoginMutation, useMeQuery} from "@/modules/auth/model/auth-api";
+import {useLoginMutation, useAuthQuery} from "@/modules/auth/model/auth-api";
 import {LoginInputs} from "@/shared/schemas/auth/credentials-dto-schema";
 import {useAppDispatch} from "@/shared/hooks/use-app-dispatch";
 import {setIsLoggedIn, setUser} from "@/app/app-slice";
@@ -6,7 +6,7 @@ import {CredentialsForm} from "@/shared/ui/CredentialsForm";
 
 
 export const LoginForm = () => {
-    const {refetch} = useMeQuery()
+    const {refetch} = useAuthQuery()
     const [login, {isLoading}] = useLoginMutation()
     const dispatch = useAppDispatch()
     const handleLogin = async (data: LoginInputs) => {
