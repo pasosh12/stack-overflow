@@ -1,1 +1,7 @@
-export const AUTH_TOKEN = "auth-token"
+export const HOME_PAGE_LINK = '/'
+export const MY_ACCOUNT_PAGE_LINK = 'profile'
+export const SNIPPET_PAGE_LINK = 'snippet'
+export const CREATE_SNIPPET_PAGE_LINK = 'create-snippet'
+export const MY_SNIPPETS_PAGE_LINK = 'my-snippets'
+export const QUESTIONS_PAGE_LINK = 'questions'
+export const USERS_PAGE_LINK = 'users'

@@ -1,0 +1,33 @@
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    background-color: var(--primary-light);
+    color: #fff;
+    height: 100vh;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.sidebar a {
+    color: var(--primary-gray);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.sidebar a:hover {
+    color: var(--primary-dark);
+}
+
+.active {
+    color: #4caf50;
+    font-weight: bold;
+}
