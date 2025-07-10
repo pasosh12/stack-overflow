@@ -1,7 +1,5 @@
-export type ApiResponse = {
-    data: {
-        data: CodeFragment[];
-    };
+export type SnippetsResponse = {
+    data: CodeFragment[]
 };
 
 export type CodeFragment = {
@@ -29,3 +27,11 @@ export type Comment = {
     id: string;
     content: string;
 };
+export type SnippetQueryParams = {
+    userId?: number
+    page?: number
+    limit?: number
+    sortBy?: string[] //['id:DESC', 'language:ASC']
+    search?: string
+    searchBy?: string[] // ["code", "language"]
+}
