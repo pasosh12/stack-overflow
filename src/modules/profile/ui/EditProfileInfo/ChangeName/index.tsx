@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import styles from "./ChangeUserName.module.css";
-import {TextField} from "@/ui/TextArea";
-import {Button} from "@/ui/Button";
+import {TextField} from "@/shared/ui/TextArea";
+import {Button} from "@/shared/ui/Button";
 import {useChangeProfileNameMutation} from "@/modules/profile/model/profile-api";
 
 export const ChangeNameForm = () => {

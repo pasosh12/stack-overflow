@@ -1,2 +1,2 @@
 export * from './model/posts-api';
-export * from './ui/PostCard';
+export * from './ui/Snippets/SnippetCard';

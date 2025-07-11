@@ -1,11 +1,15 @@
-import {Mark, Comment} from "@/modules/posts/model/post-types";
-import './PostCard.css'
+import {Comment, Mark} from "@/modules/posts/model/post-types";
+import s from './PostCard.module.css'
 import {useNavigate} from "react-router-dom";
 import {ProtectedAction} from "@/shared/utils/protected-action";
 import {SNIPPET_PAGE_LINK} from "@/shared/constants";
 import {useMarkSnippetByIdMutation} from "@/modules/posts";
 import {useState} from "react";
 import {CircularProgress} from "@mui/material";
+import {useAppSelector} from "@/shared/hooks/use-app-selector";
+import {selectUser} from "@/app/app-slice";
+import {EditSnippet} from "modules/posts/ui/Snippets/EditSnippet";
+import {useClickAway} from "@uidotdev/usehooks"
 
 type PropsType = {
     id: string
@@ -16,13 +20,19 @@ type PropsType = {
     comments: Comment[]
 }
 
-export const PostCard = ({id, code, author, language, marks, comments}: PropsType) => {
+export const SnippetCard = ({id , code, author, language, marks, comments}: PropsType) => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
     const navigate = useNavigate()
     const commentsCount = comments.length
     const likesCount = marks.filter(m => m.type === 'like').length
     const dislikesCount = marks.filter(m => m.type === 'dislike').length
     const [markPost] = useMarkSnippetByIdMutation()
+
+    const [isEditing, setIsEditing] = useState(false)
+    const isAuthor = useAppSelector(selectUser)?.username === author
+    const editorRef = useClickAway<HTMLDivElement>(() => {
+        setIsEditing(false)
+    })
 
     const handleNavigate = () => {
         navigate(`/${SNIPPET_PAGE_LINK}/${id}`)
@@ -35,35 +45,45 @@ export const PostCard = ({id, code, author, language, marks, comments}: PropsTyp
         }, 500)
     }
     return (
-        <div className="post-card">
-            <div className="post-meta">
+        <div className={s.post_card}>
+            <div className={s.post_meta}>
                 <span>{language}</span>
                 <span>@{author}</span>
             </div>
+            <div ref={editorRef}>
 
-            <pre className="code-block">
-        <code>{code}</code>
-      </pre>
-
-            <div className="post-actions">
+                {isAuthor && isEditing ?
+                    <EditSnippet lang={language} code={code} id={Number(id)}/>
+                    :
+                    <pre className={s.code_block}
+                         onDoubleClick={() => setIsEditing(true)}>
+                        {code}
+                    </pre>
+                }
+            </div>
+            <div className={s.post_actions}>
                 <ProtectedAction>
-                    <button onClick={() => handleMark('like')}
-                            disabled={isButtonDisabled}>
+                    <button
+                        className={s.post_mark}
+                        onClick={() => handleMark('like')}
+                        disabled={isButtonDisabled}>
                         👍 {likesCount}
                     </button>
                 </ProtectedAction>
                 <ProtectedAction>
                     <button
-                        // className={clsx(isButtonDisabled?)}
+                        className={s.post_mark}
                         onClick={() => handleMark('dislike')}
                         disabled={isButtonDisabled}>
                         👎 {dislikesCount}
                     </button>
                 </ProtectedAction>
-                <span style={{display:'flex', alignItems:'center'}}>
+                <span style={{display: 'flex', alignItems: 'center'}}>
                     {isButtonDisabled ? <CircularProgress size={15} color="primary"/> : null}
                 </span>
-                <button onClick={handleNavigate}>💬{commentsCount}</button>
+                <button
+                    className={s.post_mark}
+                    onClick={handleNavigate}>💬{commentsCount}</button>
             </div>
         </div>
     );

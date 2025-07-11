@@ -1,22 +1,24 @@
 import React from 'react';
 import {usePublicSnippetQuery} from "@/modules/posts/model/posts-api";
-import {PostCard} from "@/modules/posts/ui/PostCard";
+import {SnippetCard} from "modules/posts/ui/Snippets/SnippetCard";
+import {CircularProgress} from "@mui/material";
 
 
 export const HomePage = () => {
     const {data: result, isLoading} = usePublicSnippetQuery({})
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <CircularProgress/>
+
     return (
         <div>
             {result?.data?.data.map((post) => {
                 return (
-                    <PostCard
-                        id={post.id}
-                        author={post.user.username} code={post.code}
-                        language={post.language}
-                        marks={post.marks}
-                        comments={post.comments}
+                    <SnippetCard key={post.id}
+                                 id={post.id}
+                                 author={post.user.username} code={post.code}
+                                 language={post.language}
+                                 marks={post.marks}
+                                 comments={post.comments}
                     />
                 )
             })
