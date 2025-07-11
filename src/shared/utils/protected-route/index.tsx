@@ -6,6 +6,6 @@ type Props = {
     redirectPath?: string
 }
 
-export const ProtectedRoute = ({ isAllowed, redirectPath = Path.Main }: Props) => {
+export const ProtectedRoute = ({ isAllowed, redirectPath = Path.Login }: Props) => {
     return isAllowed ? <Outlet /> : <Navigate to={redirectPath} replace />
 }
