@@ -1,14 +1,14 @@
-.post-card {
-    background-color: #161616;
+.post_card {
+    margin: 16px 20px;
+    background-color: var(--primary-light);
     border-radius: 12px;
     padding: 16px 20px;
-    margin-bottom: 20px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     color: #f0f0f0;
     font-family: 'Fira Code', monospace;
 }
 
-.post-meta {
+.post_meta {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -16,24 +16,34 @@
     color: #a0a0a0;
 }
 
-.code-block {
-    background-color: #1f1f1f;
+.code_block {
+    background-color: #b5c4ec;
     padding: 12px 16px;
     border-radius: 8px;
     font-size: 14px;
+    font-weight: 400;
     white-space: pre-wrap;
     word-break: break-word;
     line-height: 1.5;
     margin-bottom: 12px;
-    color: #eaeaea;
+    color: var(--font-color-primary);
 }
 
-.post-actions {
+.post_actions {
     display: flex;
     gap: 24px;
     font-size: 14px;
     color: #cfcfcf;
 }
+
+.post_mark {
+    color: var(--font-color-primary);
+    background-color: #b5c4ec;
+    &:disabled {
+        opacity: 0.5
+    }
+}
+
 
 .icon {
     margin-right: 4px;

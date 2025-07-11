@@ -11,13 +11,17 @@
     align-items: center;
     border: 1px solid ;
     color: black ;
+    background-color: var(--primary-light);
     &:hover {
-        /*background-color: var(--powder);*/
+    background-color: var(--primary-dark);
+        .h2{
+            color: var(--text-on-primary);
+
+        }
     }
 }
 
 .h2 {
     margin: 0;
-    /*color: var(--button-blue-color);*/
     text-decoration: underline;
 }
