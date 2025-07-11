@@ -1,3 +1,5 @@
+import {User} from "@/modules/auth";
+
 export type SnippetsResponse = {
     data: CodeFragment[]
 };
@@ -24,8 +26,9 @@ export type Author = {
 };
 
 export type Comment = {
-    id: string;
-    content: string;
+    id: string
+    content: string
+    user:User
 };
 export type SnippetQueryParams = {
     userId?: number
@@ -34,4 +37,10 @@ export type SnippetQueryParams = {
     sortBy?: string[] //['id:DESC', 'language:ASC']
     search?: string
     searchBy?: string[] // ["code", "language"]
+}
+export type CreateSnippetResponse={
+    id:number
+    language:string
+    code:string
+    user:User
 }

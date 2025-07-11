@@ -5,7 +5,6 @@ import {
     GetUserStatisticsResponse,
     UsersQueryParams
 } from "@/modules/users/model/userApi.types";
-import {UserResponse} from "@/modules/auth";
 
 
 export const usersApi = baseApi.injectEndpoints({

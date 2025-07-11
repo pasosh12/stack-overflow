@@ -1,5 +1,10 @@
 import {baseApi} from "@/shared/api/base-api";
-import {CodeFragment, SnippetQueryParams, SnippetsResponse} from "@/modules/posts/model/post-types";
+import {
+    CodeFragment,
+    CreateSnippetResponse,
+    SnippetQueryParams,
+    SnippetsResponse
+} from "@/modules/posts/model/post-types";
 
 
 export const postsApi = baseApi.injectEndpoints({
@@ -18,6 +23,27 @@ export const postsApi = baseApi.injectEndpoints({
                 method: 'GET',
             }),
 
+        }),
+        createSnippet: build.mutation<CreateSnippetResponse, { code: string, language: string }>({
+            query: (body) => ({
+                url: 'api/snippets',
+                method: 'POST',
+                body
+            }),
+        }),
+        editSnippet: build.mutation<{ updatedCount: number }, {
+            id: number, body: { code: string, language: string }
+        }>({
+            query: ({id, body}) => ({
+                url: `api/snippets/${id}`,
+                method: 'PATCH',
+                body
+            }),
+        }),
+        getLanguages: build.query<{ data: string[] }, void>({
+            query: () => ({
+                url: '/api/snippets/languages',
+            })
         }),
         markSnippetById: build.mutation<void, { id: number, type: 'like' | 'dislike', params: SnippetQueryParams }>({
             query: ({id, type}) => ({
@@ -60,5 +86,12 @@ export const postsApi = baseApi.injectEndpoints({
 
     }),
 });
-export const {usePublicSnippetQuery, useGetSnippetByIdQuery, useMarkSnippetByIdMutation} = postsApi;
+export const {
+    usePublicSnippetQuery,
+    useGetSnippetByIdQuery,
+    useMarkSnippetByIdMutation,
+    useCreateSnippetMutation,
+    useEditSnippetMutation,
+    useGetLanguagesQuery
+} = postsApi;
 
