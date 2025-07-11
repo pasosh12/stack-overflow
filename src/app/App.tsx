@@ -7,7 +7,6 @@ import {useAuthQuery, UserResponse} from "@/modules/auth";
 import {setIsLoggedIn, setUser} from "@/app/app-slice";
 import {CircularProgress} from "@mui/material";
 import {Sidebar} from "@/shared/ui/Sidebar";
-import {useNavigate} from "react-router-dom";
 import {ErrorSnackbar} from "@/shared/ui/ErrorSnackbar";
 
 function App() {
@@ -15,18 +14,13 @@ function App() {
     const {refetch, isLoading} = useAuthQuery()
     const dispatch = useAppDispatch()
 
-    const navigate = useNavigate()
     useEffect(() => {
         refetch().then(res => {
             if (res.data) {
-                console.log('resdata')
                 const user: UserResponse = res.data
                 dispatch(setUser({user: user.data}))
                 dispatch(setIsLoggedIn({isLoggedIn: true}))
             }
-            // else {
-            //     navigate('/login')
-            // }
         })
         setIsInitialized(true)
     }, [])

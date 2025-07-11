@@ -1,6 +1,6 @@
 import React from 'react';
 import {usePublicSnippetQuery} from "@/modules/posts/model/posts-api";
-import {SnippetCard} from "modules/posts/ui/Snippets/SnippetCard";
+import {SnippetCard} from "@/modules/posts/ui/Snippets/SnippetCard";
 import {CircularProgress} from "@mui/material";
 
 
