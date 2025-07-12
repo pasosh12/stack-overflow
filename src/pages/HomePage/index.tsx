@@ -1,11 +1,11 @@
 import React from 'react';
 import {usePublicSnippetQuery} from "@/modules/posts/model/posts-api";
-import {SnippetCard} from "@/modules/posts/ui/Snippets/SnippetCard";
+import {SnippetCard} from "@/modules/posts/ui/SnippetCard";
 import {CircularProgress} from "@mui/material";
 
 
 export const HomePage = () => {
-    const {data: result, isLoading} = usePublicSnippetQuery({})
+    const {data: result, isLoading} = usePublicSnippetQuery({sortBy:['id:DESC']})
 
     if (isLoading) return <CircularProgress/>
 
