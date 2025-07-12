@@ -6,7 +6,7 @@ import { useGetSnippetByIdQuery} from "@/modules/posts";
 export const EditSnippet = ({lang, code, id}: { lang: string, code: string, id: number }) => {
     const [isEdited, setIsEdited] = useState(false);
     const {data:updatedSnippet, refetch} = useGetSnippetByIdQuery(id!, {skip: !isEdited})
-    const handleEditSucess = () => {
+    const handleEditSuccess = () => {
         setIsEdited(true)
         refetch()
     }
@@ -25,7 +25,7 @@ export const EditSnippet = ({lang, code, id}: { lang: string, code: string, id: 
             ) : (
                 <CodeEditor
                     id={id}
-                    action={handleEditSucess}
+                    action={handleEditSuccess}
                     isEdit={true}
                     lang={lang}
                     code={code}

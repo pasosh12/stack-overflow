@@ -8,7 +8,7 @@ import {useState} from "react";
 import {CircularProgress} from "@mui/material";
 import {useAppSelector} from "@/shared/hooks/use-app-selector";
 import {selectUser} from "@/app/app-slice";
-import {EditSnippet} from "@/modules/posts/ui/Snippets/EditSnippet";
+import {EditSnippet} from "@/modules/posts/ui/EditSnippet";
 import {useClickAway} from "@uidotdev/usehooks"
 
 type PropsType = {
@@ -35,7 +35,7 @@ export const SnippetCard = ({id , code, author, language, marks, comments}: Prop
     })
 
     const handleNavigate = () => {
-        navigate(`/${SNIPPET_PAGE_LINK}/${id}`)
+        navigate(`${SNIPPET_PAGE_LINK}/${id}`, {replace: true} )
     }
     const handleMark = async (type: 'like' | 'dislike') => {
         setIsButtonDisabled(true)

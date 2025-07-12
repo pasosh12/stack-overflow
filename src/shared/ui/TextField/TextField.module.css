@@ -1,7 +1,5 @@
-/*@import '../styles/global.css';*/
 
 .textfield_wrapper {
-    /*font-family: Roboto, sans-serif;*/
 }
 
 .input_wrapper {
@@ -11,7 +9,7 @@
 
 .textfield_label {
     pointer-events: none;
-    color:  var(--font-color-primary);
+    color:  var(--base-gray);
     position: absolute;
     left: 10px;
     top: 50%;
