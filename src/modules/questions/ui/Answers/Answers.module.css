@@ -1,0 +1,27 @@
+.answer_title {
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+.showAnswers{
+    width: 20px;
+    height: 20px;
+}
+.answer_container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+.answers_list {
+    padding: 0;
+    margin: 8px 0 0 0;
+    list-style: none;
+}
+.answer_content {
+    flex-grow: 1;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
