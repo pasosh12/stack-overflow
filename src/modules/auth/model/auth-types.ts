@@ -4,13 +4,13 @@ export type UserCredentials = {
 }
 
 export type User = {
-    id: number,
+    id: string, //!!!
     username: string,
     role: string
 }
 export type UserResponse = {
     data: {
-        id: number,
+        id: string,
         username: string,
         role: string
     },

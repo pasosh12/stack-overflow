@@ -3,7 +3,7 @@ import {User} from "@/modules/auth";
 
 export type UsersQueryParams = Omit<SnippetQueryParams, "userId">
 type SortOrder = "ASC" | "DESC"
-type Meta = {
+export type Meta = {
     itemsPerPage: number
     totalItems: number
     currentPage: number

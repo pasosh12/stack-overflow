@@ -9,10 +9,10 @@ export const UsersPage = () => {
     const navigate = useNavigate()
     const {data: users, isLoading} = useGetUsersQuery({})
     if (isLoading) return <CircularProgress/>
-    const handleClick = (id: number) => {
+    const handleClick = (id: string) => {
         navigate(`/users/${id}/statistics`)
     }
-    console.log(users?.data.data)
+
     return (
         <>
             <h1>Users Page</h1>
@@ -20,7 +20,7 @@ export const UsersPage = () => {
                 {
                     users?.data.data.map(user => (
 
-                        <UserCard
+                        <UserCard key={user.id}
                             onClick={() => handleClick(user.id)}
                             user={user}/>
                     ))

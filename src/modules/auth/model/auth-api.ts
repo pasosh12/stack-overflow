@@ -10,6 +10,7 @@ export const authApi = baseApi.injectEndpoints({
                 method: 'POST',
                 body,
             }),
+            invalidatesTags: ['Auth'],
         }),
         register: build.mutation<User, UserCredentials>({
             query: (body) => ({
@@ -23,6 +24,7 @@ export const authApi = baseApi.injectEndpoints({
                 url: '/api/auth',
                 method: 'GET'
             }),
+            providesTags: ['Auth'],
         }),
 
         logout: build.mutation<void, void>({

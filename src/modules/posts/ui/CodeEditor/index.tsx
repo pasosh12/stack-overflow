@@ -46,7 +46,7 @@ export const CodeEditor = ({lang, code, isEdit = false, id, ...props}: PropsType
     }
     const languagesArr = languages?.data.map(el => el)
     if (isLoading) return <CircularProgress/>
-    console.log(languages?.data)
+
     return (
         <div className={s.codeEditor_wrapper}>
             <label htmlFor="select-language"

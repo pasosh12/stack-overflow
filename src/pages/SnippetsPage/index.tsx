@@ -2,7 +2,7 @@ import React from 'react';
 import {useGetSnippetByIdQuery} from "@/modules/posts/model/posts-api";
 import {useParams} from "react-router-dom";
 import {SnippetCard} from "@/modules/posts";
-import {Comments} from "@/modules/posts/ui/Comments";
+import {Comments} from "@/modules/comments/ui";
 
 export const SnippetPage = () => {
     const {id} = useParams<string>()

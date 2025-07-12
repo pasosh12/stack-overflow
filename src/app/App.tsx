@@ -16,14 +16,15 @@ function App() {
 
     useEffect(() => {
         refetch().then(res => {
-            if (res.data) {
+            if (res?.data) {
                 const user: UserResponse = res.data
                 dispatch(setUser({user: user.data}))
                 dispatch(setIsLoggedIn({isLoggedIn: true}))
-            }
-        })
+
+                }
+            })
         setIsInitialized(true)
-    }, [])
+    }, [dispatch, refetch])
 
     if (!isInitialized || isLoading) {
         return (
