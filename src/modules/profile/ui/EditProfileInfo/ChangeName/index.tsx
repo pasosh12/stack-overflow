@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import styles from "./ChangeUserName.module.css";
-import {TextField} from "@/shared/ui/TextArea";
+import {TextField} from "@/shared/ui/TextField";
 import {Button} from "@/shared/ui/Button";
 import {useChangeProfileNameMutation} from "@/modules/profile/model/profile-api";
 
