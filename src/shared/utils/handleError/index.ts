@@ -36,11 +36,6 @@ export const handleError = (
         api.dispatch(setAppErrorAC({ error }))
     }
 
-    // if ((result.data as { resultCode: ResultCode }).resultCode !== ResultCode.Success) {
-    //     const messages = (result.data as { messages: string[] }).messages
-    //     error = messages?.length ? messages[0] : error
-    //     api.dispatch(setAppErrorAC({ error }))
-    // }
     if (
         result.data &&
         typeof result.data === "object" &&
@@ -51,8 +46,6 @@ export const handleError = (
             message?: string;
             messages?: string[];
         };
-        debugger
-        console.log('deebugger')
         error = response.message ||
             (response.messages?.length ? response.messages[0] : error);
     }
