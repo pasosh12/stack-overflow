@@ -8,6 +8,7 @@
 
 .codeEditor_label {
     font-weight: 800;
+    color:var(--primary-dark)
 }
 
 .codeEditor_select {

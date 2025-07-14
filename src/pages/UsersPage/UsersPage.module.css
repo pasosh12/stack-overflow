@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    justify-items: center;
     margin: 0 auto;
 }
 @media (max-width: 900px) {
@@ -10,7 +11,12 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
+    .usersPage_grid {
+        grid-template-columns: 2fr;
+    }
+}
+@media (max-width: 470px) {
     .usersPage_grid {
         grid-template-columns: 1fr;
     }

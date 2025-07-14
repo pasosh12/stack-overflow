@@ -31,14 +31,20 @@
 
 .post_actions {
     display: flex;
+    padding: 16px 8px 0;
     gap: 24px;
     font-size: 14px;
     color: #cfcfcf;
 }
 
 .post_mark {
+    border:none;
+    border-radius: 8px;
+    height: 30px;
+    padding: 0 18px;
     color: var(--font-color-primary);
     background-color: #b5c4ec;
+    cursor:pointer;
     &:disabled {
         opacity: 0.5
     }
