@@ -68,11 +68,11 @@ export const CreateQuestionForm = () => {
                     }}
                     onChange={(value: string | undefined) => setValues((prev) => ({...prev, code: value || ''}))}
                 />
-
+                <Button onClick={handleSubmit}>
+                    Publish question
+                </Button>
             </form>
-            <Button onClick={handleSubmit}>
-                Publish question
-            </Button>
+
         </>
     );
 };
