@@ -1,7 +1,14 @@
 import {User} from "@/modules/auth";
+import {Links} from "@/modules/questions";
+import {Meta} from "@/modules/users/model/userApi.types";
 
 export type SnippetsResponse = {
-    data: CodeFragment[]
+    data:{
+        data: CodeFragment[]
+        links:Links
+        meta:Meta
+
+    }
 };
 
 export type CodeFragment = {

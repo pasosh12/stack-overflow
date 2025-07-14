@@ -1,50 +1,57 @@
 import React from 'react';
 import {Editor} from "@monaco-editor/react";
 import {Button} from "@/shared/ui/Button";
-import {
-    useCreateSnippetMutation,
-    useEditSnippetMutation,
-    useGetLanguagesQuery,
-} from "@/modules/posts";
+import {useCreateSnippetMutation, useEditSnippetMutation, useGetLanguagesQuery,} from "@/modules/posts";
 import s from './CodeEditor.module.css'
 import {CircularProgress} from "@mui/material";
 
 type PropsType = {
     id?: number
-    action?: () => void
+    successAction?: () => void
     isEdit?: boolean
     lang?: string
     code?: string
 }
-export const CodeEditor = ({lang, code, isEdit = false, id, ...props}: PropsType) => {
-    const [language, setLanguage] = React.useState<string>(lang || "")
-    const [localCode, setLocalCode] = React.useState<string>(code || "")
-    const {data: languages, isLoading} = useGetLanguagesQuery()
+export const CodeEditor = ({
+                               lang, code,
+                               isEdit = false, id, ...props
+                           }: PropsType) => {
+
+    const [language, setLanguage] = React.useState<string>(lang || '')
+    const [localCode, setLocalCode] = React.useState<string>(code || '')
+    const {data: languages} = useGetLanguagesQuery()
     const [createSnippet] = useCreateSnippetMutation()
-    const [editSnippet] = useEditSnippetMutation()
+    const [editSnippet, {isLoading}] = useEditSnippetMutation()
+
 
     const handleSubmit = () => {
+        const trimmedCode = localCode.trim()
+        setLocalCode(trimmedCode)
+        if (!trimmedCode) {
+            return alert('enter code')
+        }
+        if (!language) {
+            return alert('Choose language')
+        }
         if (localCode && language) {
-
             if (isEdit) {
-                editSnippet({body: {code: localCode, language}, id: id!}).unwrap()
+                editSnippet({body: {code: trimmedCode, language}, id: id!}).unwrap()
                     .then(() => {
-                        alert('updated successfully')
+                        if (props.successAction) props.successAction()
                     })
                     .catch(e => alert(e))
-                    .finally(() => {
-                        if (props.action) props.action()
-                    })
             } else {
-                createSnippet({code: localCode, language}).unwrap()
+                createSnippet({code: trimmedCode, language}).unwrap()
+                setLocalCode('')
+                setLanguage('')
+                if (props.successAction) props.successAction()
+
             }
 
-
-        } else {
-            alert('Choose language and fill input')
         }
     }
     const languagesArr = languages?.data.map(el => el)
+
     if (isLoading) return <CircularProgress/>
 
     return (
@@ -74,7 +81,7 @@ export const CodeEditor = ({lang, code, isEdit = false, id, ...props}: PropsType
                 height="400px"
                 width="600px"
                 language={language}
-                theme="vs-dark"
+                theme="vs"
                 value={localCode}
                 onChange={(newCode) => setLocalCode(newCode || "")}
                 options={{
@@ -84,8 +91,7 @@ export const CodeEditor = ({lang, code, isEdit = false, id, ...props}: PropsType
             />
 
             <Button onClick={handleSubmit}>
-                Post Snippet
-                {/*    {isEdit ? "Edit post " : "Post snippet"}*/}
+                {isEdit ? "Edit snippet " : "Post snippet"}
             </Button>
         </div>
     );
