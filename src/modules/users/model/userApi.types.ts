@@ -23,7 +23,7 @@ type Links = {
 }
 
 
-type Statistic = {
+export type StatisticType = {
     snippetsCount: number
     rating: number
     commentsCount: number
@@ -39,7 +39,12 @@ export type GetUsersResponseWithMeta = {
     meta: Meta
     links: Links[]
 }
-export type GetUserByIdResponse = User
-export type GetUserStatisticsResponse = User & {
-    statistic: Statistic
+export type GetUserByIdResponse ={
+    data: User
+}
+export type GetUserStatisticsResponse = {
+    data: {
+        statistic: StatisticType
+
+    }  & User
 }

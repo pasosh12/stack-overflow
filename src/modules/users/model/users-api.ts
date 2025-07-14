@@ -23,7 +23,7 @@ export const usersApi = baseApi.injectEndpoints({
         }),
         getUserStatistics: build.query<GetUserStatisticsResponse, number>({
             query: (id) => ({
-                url: `/api/users/${id}/statistics`,
+                url: `/api/users/${id}/statistic`,
                 method: 'GET'
             }),
         }),

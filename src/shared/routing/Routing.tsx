@@ -61,6 +61,7 @@ export const Routing = () => {
                 <Route path={Path.CreateQuestion} element={<CreateQuestionPage/>}/>
             </Route>
             <Route path={`${Path.Snippets}/:id`} element={<SnippetPage/>}/>
+            <Route path={`${Path.Users}/:id/statistics`} element={<ProfilePage/>}/>
 
             <Route path={Path.NotFound} element={<PageNotFound/>}/>
         </Routes>
