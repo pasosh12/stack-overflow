@@ -7,7 +7,7 @@ import {useAuthQuery, UserResponse} from "@/modules/auth";
 import {setIsLoggedIn, setUser} from "@/app/app-slice";
 import {CircularProgress} from "@mui/material";
 import {Sidebar} from "@/shared/ui/Sidebar";
-import {ErrorSnackbar} from "@/shared/ui/ErrorSnackbar";
+import {MessageSnackbar} from "@/shared/ui/Snackbar";
 
 function App() {
     const [isInitialized, setIsInitialized] = useState(false)
@@ -21,8 +21,8 @@ function App() {
                 dispatch(setUser({user: user.data}))
                 dispatch(setIsLoggedIn({isLoggedIn: true}))
 
-                }
-            })
+            }
+        })
         setIsInitialized(true)
     }, [dispatch, refetch])
 
@@ -35,13 +35,13 @@ function App() {
     }
     return (
         <div className='layout'>
-            <Sidebar/>
-            <div className='layout-content'>
                 <Header/>
-                <main>
+            <div className='layout-content'>
+            <Sidebar />
+                <main className='main-content'>
                     <Routing/>
                 </main>
-                <ErrorSnackbar/>
+                <MessageSnackbar/>
             </div>
         </div>
     )
