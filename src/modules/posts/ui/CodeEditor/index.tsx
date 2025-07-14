@@ -71,7 +71,7 @@ export const CodeEditor = ({
 
                 {languagesArr?.map((lang) => {
                         return (
-                            <option value={lang}>{lang}</option>
+                            <option key={lang} value={lang}>{lang}</option>
                         )
                     }
                 )}
