@@ -9,7 +9,7 @@ export type AnswerType = {
     isCorrect: boolean
 }
 export type QuestionType = {
-    id: number
+    id: string
     title: string
     description: string
     attachedCode: string
@@ -17,7 +17,31 @@ export type QuestionType = {
     answers: AnswerType[]
     isResolved: boolean
 }
-export type GetQuestionsResponse = {
-    data: QuestionType[]
-    meta: Meta
+export type Links = {
+    first: string
+    previous: string
+    current: string
+    next: string
+    last: string
 }
+export type GetQuestionsResponse = {
+    data: {
+        data: QuestionType[]
+        meta: Meta
+        links: Links
+    }
+}
+export type CreateQuestionRequest = {
+    title: string
+    description: string
+    attachedCode: string
+}
+export type CreateQuestionResponse = {
+    data: {
+        user: User
+        id: string
+    } & CreateQuestionRequest
+
+}
+export type UpdateQuestionResponse = CreateQuestionResponse
+export type UpdateQuestionRequest = CreateQuestionRequest
