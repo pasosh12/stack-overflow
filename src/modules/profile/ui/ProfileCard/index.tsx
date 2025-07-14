@@ -74,8 +74,6 @@ export const ProfileCard = ({isMe, profileInfo, statistic}: PropsType) => {
                 </div>
                 {
                     isMe && (
-
-
                         <div className={s.account_button_wrapper}>
                             <Button onClick={handleEditProfile}>&#x270E; Edit profile</Button>
                             <Button variant="outlined" onClick={handleDeleteProfile}>
