@@ -15,13 +15,11 @@ export const HeaderActionButtons = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
-    const handleLogout = () => {
-        logout().then(() => {
-            dispatch(setLogout())
-
-        }).then(() => {
-            dispatch(baseApi.util.invalidateTags(["Auth"]))
-        })
+    const handleLogout = async () => {
+        await logout().unwrap()
+        dispatch(setLogout())
+        dispatch(baseApi.util.invalidateTags(["Auth"]))
+        navigate('/')
     }
     return (
         <>
