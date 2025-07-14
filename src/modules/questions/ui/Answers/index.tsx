@@ -2,7 +2,7 @@ import React, {Dispatch, SetStateAction} from 'react';
 import s from './Answers.module.css'
 import eyeOff from "@/shared/assets/eye-off.svg";
 import eye from "@/shared/assets/eye.svg";
-import ExpandableText from "@/shared/ui/expandableText";
+import ExpandableText from "@/shared/ui/ExpandableText";
 import {AnswerType} from "@/modules/questions/model/questions-api.types";
 type PropsType={
     answers:AnswerType[]
