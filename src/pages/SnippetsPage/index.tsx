@@ -1,7 +1,7 @@
 import React from 'react';
 import {useGetSnippetByIdQuery} from "@/modules/posts/model/posts-api";
 import {useParams} from "react-router-dom";
-import {SnippetCard} from "@/modules/posts";
+import {EditableSnippetCard} from "@/modules/posts";
 import {Comments} from "@/modules/comments/ui";
 
 export const SnippetPage = () => {
@@ -13,10 +13,10 @@ export const SnippetPage = () => {
 
     return (
         <>
-            <SnippetCard id={snippet.id}
-                      author={snippet.user.username} marks={snippet.marks}
-                      language={snippet.language}
-                      code={snippet.code} comments={snippet.comments}/>
+            <EditableSnippetCard id={snippet.id}
+                                 author={snippet.user.username} marks={snippet.marks}
+                                 language={snippet.language}
+                                 code={snippet.code} comments={snippet.comments}/>
 
             <Comments snippet={snippet}/>
         </>

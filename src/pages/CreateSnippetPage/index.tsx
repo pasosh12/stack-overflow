@@ -1,11 +1,10 @@
 import React from 'react';
-import {CreateSnippet} from "@/modules/posts/ui/CreateSnippet";
-
+import {CreateSnippetForm} from "@/modules/posts";
 
 export const CreateSnippetPage = () => {
     return (
         <>
-            <CreateSnippet/>
+            <CreateSnippetForm/>
         </>
     );
 };

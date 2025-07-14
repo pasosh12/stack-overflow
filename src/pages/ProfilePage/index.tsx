@@ -1,5 +1,5 @@
 import React from 'react';
-import {ProfileCard} from "@/modules/profile/ui/ProfileCard";
+import {ProfileCard} from "@/modules/profile";
 import {useGetProfileInfoQuery} from "@/modules/profile/model/profile-api";
 import {CircularProgress} from "@mui/material";
 
