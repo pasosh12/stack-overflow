@@ -6,6 +6,7 @@ import {MobileSidebar} from "@/shared/ui/Sidebar/MobileSidebar";
 import {useMobileSidebar} from "@/shared/hooks/use-mobile-sidebar";
 import {HeaderActionButtons} from "@/shared/ui/Header/HeaderActionButtons";
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 export const Header = () => {
 
@@ -22,7 +23,7 @@ export const Header = () => {
             <>
                 <header className={styles.header}>
                     <Link to="/" className={styles.logo}>Stack overflow</Link>
-                    <button className={styles.logo} onClick={toggleSidebar}> ☰</button>
+                    <MenuRoundedIcon className={styles.header_sidebar_button} onClick={toggleSidebar}/>
                 </header>
                 <MobileSidebar isOpened={mobileSidebarOpen} toggleSidebar={toggleSidebar}
                                closeSidebar={closeSidebar}
