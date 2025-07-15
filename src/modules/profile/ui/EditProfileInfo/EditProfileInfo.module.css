@@ -1,0 +1,15 @@
+.editAccount_wrapper {
+    margin-top: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.editAccount_content {
+    display: flex;
+    column-gap: 50px;
+}

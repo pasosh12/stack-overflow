@@ -1,0 +1,41 @@
+.questionCard_wrapper {
+    padding: 10px;
+    width: 90%;
+    margin: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+    border-radius: 8px;
+    background-color: var(--primary-light);
+    cursor: default;
+}
+
+.questionCard_content {
+    display: flex;
+    align-items: center;
+}
+
+.questionCard_icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+}
+.questionCart_description{
+    border: 1px solid #8bcafa;
+    background-color: #c5e1f6;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+.questionCard_title {
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+h3,
+p {
+    margin: 0;
+}
+

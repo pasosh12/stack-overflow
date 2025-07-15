@@ -1,0 +1,8 @@
+.changeNameForm_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.changeNameForm_input{
+    width: 350px;
+}

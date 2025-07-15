@@ -1,0 +1,15 @@
+.deleteAccount_wrapper {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.deleteAccount_buttons {
+    display: flex;
+    column-gap: 30px;
+}

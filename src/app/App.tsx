@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from '../shared/assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {Header} from "@/shared/ui/Header/Header";
+import {Routing} from "@/shared/routing";
+import {useEffect} from "react";
+import {useAppDispatch} from "@/shared/hooks/use-app-dispatch";
+import {useAuthQuery, UserResponse} from "@/modules/auth";
+import {setIsLoggedIn, setUser} from "@/app/app-slice";
+import {CircularProgress} from "@mui/material";
+import {Sidebar} from "@/shared/ui/Sidebar";
+import {MessageSnackbar} from "@/shared/ui/Snackbar";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const {data, refetch, isLoading} = useAuthQuery()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (data) {
+            const user: UserResponse = data
+            dispatch(setUser({user: user.data}))
+            dispatch(setIsLoggedIn({isLoggedIn: true}))
+        }
+    }, [dispatch, data, refetch])
+
+
+    if (isLoading) {
+        return (
+            <div className='circularProgressContainer'>
+                <CircularProgress size={150} thickness={3}/>
+            </div>
+        );
+    }
+    return (
+        <div className='layout'>
+            <Header/>
+            <div className='layout-content'>
+                <Sidebar/>
+                <main className='main-content'>
+                    <Routing/>
+                </main>
+                <MessageSnackbar/>
+            </div>
+        </div>
+    )
 }
 
 export default App

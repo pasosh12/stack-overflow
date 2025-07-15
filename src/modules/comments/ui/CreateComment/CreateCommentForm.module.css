@@ -1,0 +1,14 @@
+.commentForm {
+
+}
+.commentForm_content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.commentForm_field{
+    width: 80%;
+}
+.commentForm_wrapper {
+    padding: 1rem 0;
+}
