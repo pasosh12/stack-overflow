@@ -9,7 +9,7 @@ import {
 
 export const usersApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-              getUsers: build.query<{data:GetUsersResponseWithMeta}, UsersQueryParams>({
+        getUsers: build.query<{ data: GetUsersResponseWithMeta }, UsersQueryParams>({
             query: () => ({
                 url: '/api/users',
                 method: 'GET'
@@ -26,7 +26,8 @@ export const usersApi = baseApi.injectEndpoints({
                 url: `/api/users/${id}/statistic`,
                 method: 'GET'
             }),
+            providesTags: ['UserInfo'],
         }),
     }),
 });
-export const {useGetUsersQuery,useGetUserByIdQuery,useGetUserStatisticsQuery} = usersApi;
+export const {useGetUsersQuery, useGetUserByIdQuery, useGetUserStatisticsQuery} = usersApi;

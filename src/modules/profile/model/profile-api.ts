@@ -16,13 +16,15 @@ export const profileApi = baseApi.injectEndpoints({
                 url: '/api/me',
                 method: 'GET'
             }),
+            providesTags:['UserInfo']
         }),
         changeProfileName: build.mutation<void, { username: string }>({
             query: (body) => ({
                 url: '/api/me',
                 method: 'PATCH',
                 body
-            })
+            }),
+            invalidatesTags:['UserInfo'],
         }),
         changePassword:build.mutation<{updatedCount:number},{oldPassword:string,newPassword:string}>({
             query: (body) => ({
